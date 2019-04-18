@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crystal Game!</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+</head>
+
+<body>
+    <div class="main-container">
+
+        <div class="row">
+            <div class="column">
+                <h1 id="titlesection">Crystal Game</h1>
+                <br>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <p id="rules">Welcome to the Crystal Collecting Game! You will be given a random number at the start of each
+                game. There are four crystals below. Click on a crystal to add a specific amount of points to your total
+                score. You win the game by matching your total score to the random number given to you at the start of
+                the
+                game,and you lose the game if your total score goes above the random number. The value of each crystal
+                is
+                hidden until you click on it. For each new game, the value of each crystal will change!</p>
+            <br>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                Random Number to Match:
+                <span id="numbertoguess"></span>
+            </div>
+            <div class="column">
+                <p id="wins">Games Won: </p>
+                <p id="losses">Games Lost: </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="column button"><span id="buttontest"><img id="button1" src="assets/images/Crystal1.jpg" alt="Chyrstal1"></span> </div>
+            <div class="column button"> <img id="button2" src="assets/images/Crystal2.jpg" alt="Chyrstal2"></div>
+            <div class="column button"> <img id="button3" src="assets/images/Crystal3.jpg" alt="Chyrstal3"></div>
+            <div class="column button"> <img id="button4" src="assets/images/Crystal4.jpg" alt="Chyrstal4"></div>
+
+        </div>
+
+
+        <div class="row">
+            <p id="currentscore">Your current score is: </p>
+            <p id="test">test output here: </p>
+        </div>
+
+
+
+
+    </div>
+
+    <script>
+
+        //variables
+
+        // variable to hold number wins/losses/guesses
+var wins = 0;
+var losses = 0;
+
+        var randomnumber = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
+        console.log(randomnumber);
+        //variable for computer generated number. needs to be 19 - 120
+
+
+        var crystal1 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        console.log(crystal1);  //creating a random number for each crystal. 
+
+        //probably a better way to do this? with a loop somehow?
+        var crystal2 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        console.log(crystal2);
+
+        var crystal3 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        console.log(crystal3);
+
+        var crystal4 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        console.log(crystal4);
+
+        var sumAllCrystal = []; //array to hold the sum of all crystals
+
+        //jquery to put randomly generated number to guess into the <span> tag in the HTML
+        $('#numbertoguess').text(randomnumber);
+        //functions
+
+
+        //stuff that happens after click
+    //trying out jQuery, not to keep  
+        // $(".button").on("click", function () {
+        //    // $(this).hide();
+        //     alert("test");
+            
+        // }); this works  on all buttons
+
+        $(".button").on("click", function () {
+           // $(this).hide();
+           alert("test");
+           sumAllCrystal.push(crystal1);  //this isn't working?
+        //    sumAllCrystal.concat(crystal1);
+        });
+
+
+//creat a function that takes all click values and sums thems
+        // function addUpCrystalValues(crystal1, crystal2, crystal3, crystal4) {
+        //     var sumAllCrystal = [];
+        //     for(var j=0; j<
+        // }
+
+        // sumAllCrystal.push(crystal1, crystal2, crystal3, crystal4); this works, why doesn't it work on click?
+
+     
+
+
+        $("#button2").on("click", function () {
+           sumAllCrystal.push(crystal1); 
+        });
+
+        //use push() to put sum of crystals into array --not quite right, I need the sum of crystals ADDED together after each click
+        // sumAllCrystal.push(crystal1, crystal2, crystal3, crystal4 );
+
+        console.log(sumAllCrystal);
+
+        //summing an array with a for loop
+
+        var crystalClickTotal = 0;
+        for (var i = 0; i < sumAllCrystal.length; i++) {
+            crystalClickTotal+= sumAllCrystal[i] << 0;
+        }
+
+        console.log(crystalClickTotal)
+
+
+        
+//if the sum of all the crystal clicks is the same as the random number:
+        if (sumAllCrystal === randomnumber) {
+            wins++; //increase win counter
+            alert("You have won! Click to play again!");
+            reset() //call reset function
+
+        }
+
+        //if the sum is greater than random number:
+        else if (sumAllCrystal >= randomnumber) {
+            losses++; //increase losses counter
+            alert("You have lost! Click to play again!");
+            reset() //call reset function
+        }
+
+        //computer generates a random number between 19-120 and stores this in randomnumber
+
+        //computer generates a random number for each crystal between 1 -12
+
+        //user clicks on a crystal
+        //number assigned to that crystal updates the HTML with the current score (sum of all numbers)
+        //if that number is more than randomnumber, user loses, alert You lose, increase loss counter, reset game
+        //if that number equals random number, users wins, alert You Win!, increas win counter, reset game
+
+        $('#wins').text("Games Won : " + wins); //put score in HTML tag so user can see it
+        $('#losses').text("Games Lost: " + losses); //put score in HTML tag so user can see it
+        //if that number is less than randomnumber, do nothing until user clicks on another crystal
+
+        //reset game function
+        //generate new randomnumber
+        //generate new crystal numbers
+        //clear current score (keep wins/losses)
+        //alert user to try again
+
+        function reset() {
+            var randomnumber = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
+            var crystal1 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+            var crystal2 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+            var crystal3 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+            var crystal4 = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+            alert("Try again!");
+//Above part of reset generates new random numbers
+
+        }
+
+//
+
+//   ![Crystal Collector](Images/1-CrystalCollector.jpg)
+
+// 1. [Watch the demo](https://youtu.be/yNI0l2FMeCk).
+
+// 2. The player will have to guess the answer, just like in Word Guess. This time, though, the player will guess with numbers instead of letters. 
+//    * There will be four crystals displayed as buttons on the page.
+//    * The player will be shown a random number at the start of the game.
+//    * When the player clicks on a crystal, it will add a specific amount of points to the player's total score. 
+//      * Your game will hide this amount until the player clicks a crystal.
+//      * When they do click one, update the player's score counter.
+//    * The player wins if their total score matches the random number from the beginning of the game.
+//    * The player loses if their score goes above the random number.
+//    * The game restarts whenever the player wins or loses.
+//      * When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
+// //    * The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
+// * The random number shown at the start of the game should be between 19 - 120.
+// * Each crystal should have a random hidden value between 1 - 12.
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+.row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+  }
+
+  
+  img {
+    width: 90%;
+    height: auto;
+    border: solid 2px blue;
+  }

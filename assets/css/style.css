@@ -4,6 +4,7 @@
   
   .column {
     flex: 50%;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   }
 
   
@@ -12,3 +13,37 @@
     height: auto;
     border: solid 2px blue;
   }
+
+  p {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  }
+
+  span {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: bold;
+    color: blueviolet;
+  }
+
+  #titlesection {
+    
+    background-image: linear-gradient(130deg, rgb(44, 174, 218), #0142be, rgb(125, 0, 175));
+    text-align: center;
+    height: 100px;
+    padding-top: 60px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 50px;
+    color: whitesmoke;
+  }
+
+  #rules {
+    padding-bottom: 10px;
+  }
+
+  .button {
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  body {
+    background-color: #fff;
+   }
